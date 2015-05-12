@@ -46,8 +46,19 @@ def print_name_and_health(player)
   puts "#{player.name} ( #{player.health} )"
 end
 
+#iterates through each player and sums up the total points
+
+def total_points
+    @players.reduce(0) do |sum, player|
+      sum + player.points
+    end
+  end
+
 
 def print_stats
+
+puts "#{total_points} total points from treasures found"
+
   #Create two arrays: 
   #one containing only the strong players 
   strong_players = @players.select { |player| player.strong? }
@@ -75,9 +86,18 @@ def print_stats
       puts "#{formatted_name} ............. #{player.score}"
    end
 
+   puts "\n#{@title} Total Points:"
+ 
+   @players.sort.each do |player|   
+      puts "\n#{player.name}'s point totals:"
+      puts "#{player.points} grand total points"
+   end
+
  end # end print_stats
 
 end  # end class Game
+
+
 
 if __FILE__ == $0
   game = Game.new("Test Game")

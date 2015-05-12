@@ -3,12 +3,14 @@ class Player
   attr_accessor :name
   attr_reader :health
   #attr_writer
+
   
   def initialize(name, health=100)  
     #set instance variables to parameter variables(local) so that they are available to other instance methods
     @name = name.capitalize
     @health = health    
-    
+    @found_treasures = Hash.new(0)
+
     #Check that everything is set up:
     #puts self.inspect
   end
@@ -22,11 +24,12 @@ class Player
   end
   
   def score
-    @health + @name.length
+    @health + points
+    #@health + @name.length
   end
   
   def to_s
-    "I'm #{@name.capitalize} with a health of #{@health} and a score of #{score}."
+    "I'm #{@name.capitalize} with health = #{@health}, points = #{points}, and score = #{score}."
   end
   
   def w00t
@@ -43,6 +46,16 @@ class Player
 #so that any time you call sort on an array of players it always returns them sorted by descending score. 
   def <=>(other)
     other.score <=> score
+  end
+
+  def found_treasure(treasure)
+    @found_treasures[treasure.name] += treasure.points
+    puts "#{@name} found a #{treasure.name} worth #{treasure.points} points."
+    puts "#{@name}'s treasures: #{@found_treasures}"
+  end
+
+  def points
+    @found_treasures.values.reduce(0, :+)
   end
 
 
