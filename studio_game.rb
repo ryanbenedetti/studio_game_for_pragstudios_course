@@ -9,7 +9,14 @@ knuckleheads = Game.new("Knuckleheads")
 knuckleheads.add_player(player1)
 knuckleheads.add_player(player2)
 knuckleheads.add_player(player3)
-knuckleheads.play(3)
+
+loop do
+	puts "\nHow many turns?"
+	answer = gets.chomp
+	puts "Enjoy your #{answer} turns ..."
+	knuckleheads.play(answer.to_i)
+end
+
 knuckleheads.print_stats
 
 player4 = Player.new("Charlie Denmare")
@@ -20,10 +27,15 @@ playwright = Game.new("Playwright")
 playwright.add_player(player4)
 playwright.add_player(player5)
 playwright.add_player(player6)
-playwright.play(3)
+
+loop do
+	puts "\nHow many turns?"
+	answer = gets.chomp
+	puts "Enjoy your #{answer} turns ..."
+	playwright.play(answer.to_i)
+end
+
 playwright.print_stats
-
-
 
 
 # player1 = Player.new("Moe")
