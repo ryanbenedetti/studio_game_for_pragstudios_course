@@ -1,41 +1,66 @@
 require_relative 'game'
 require_relative 'player'
+require_relative 'clumsy_player'
+require_relative 'berserk_player'
 
 player1 = Player.new("moe")
 player2 = Player.new("larry", 60)
 player3 = Player.new("curly", 125)
+player4 = ClumsyPlayer.new("klutz", 105, 3)  
+player5 = BerserkPlayer.new("berserker", 105) 
     
 knuckleheads = Game.new("Knuckleheads")
-knuckleheads.add_player(player1)
-knuckleheads.add_player(player2)
-knuckleheads.add_player(player3)
+# knuckleheads.add_player(player1)
+# knuckleheads.add_player(player2)
+# knuckleheads.add_player(player3)
+
+knuckleheads.add_player(player4)
+knuckleheads.add_player(player5)
+
+knuckleheads.load_players(ARGV.shift || "players.csv")
+
 
 loop do
-	puts "\nHow many turns?"
-	answer = gets.chomp
-	puts "Enjoy your #{answer} turns ..."
-	knuckleheads.play(answer.to_i)
+puts "\nHow many game rounds? (enter 'quit' to exit)"
+	answer = gets.chomp.downcase
+	case answer
+	when /^\d+$/
+		knuckleheads.play(answer.to_i)
+	when 'quit', 'exit'
+		knuckleheads.print_stats
+		break
+	else
+		puts "Please enter a number or enter 'quit' to exit."
+	end #case
 end
 
 knuckleheads.print_stats
+knuckleheads.save_high_scores
 
-player4 = Player.new("Charlie Denmare")
-player5 = Player.new("Keith Scorfano", 95)
-player6 = Player.new("Muzzy Borbotti", 125)
+# player4 = Player.new("Charlie Denmare")
+# player5 = Player.new("Keith Scorfano", 95)
+# player6 = Player.new("Muzzy Borbotti", 125)
     
-playwright = Game.new("Playwright")
-playwright.add_player(player4)
-playwright.add_player(player5)
-playwright.add_player(player6)
+# playwright = Game.new("Playwright")
+# # playwright.add_player(player4)
+# # playwright.add_player(player5)
+# # playwright.add_player(player6)
 
-loop do
-	puts "\nHow many turns?"
-	answer = gets.chomp
-	puts "Enjoy your #{answer} turns ..."
-	playwright.play(answer.to_i)
-end
+# loop do
+# 	puts "\nHow many game rounds? (enter 'quit' to exit)"
+# 	answer = gets.chomp.downcase
+# 	case answer
+# 	when /^\d+$/
+# 		playwright.play(answer.to_i)
+# 	when 'quit', 'exit'
+# 		playwright.print_stats
+# 		break
+# 	else
+# 		puts "Please enter a number or enter 'quit' to exit."
+# 	end #case
+# end #loop
 
-playwright.print_stats
+# playwright.print_stats
 
 
 # player1 = Player.new("Moe")

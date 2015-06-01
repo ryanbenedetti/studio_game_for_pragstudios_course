@@ -108,6 +108,13 @@ it "computes points as the sum of all treasure points" do
   @player.points.should == 500
 end
 
+it "can be created from a CSV string" do
+  player = Player.from_csv("larry,150")
+  
+  player.name.should == "Larry"
+  player.health.should == 150
+end
+
 it "yields each found treasure and its total points" do
   @player.found_treasure(Treasure.new(:skillet, 100))
   @player.found_treasure(Treasure.new(:skillet, 100))

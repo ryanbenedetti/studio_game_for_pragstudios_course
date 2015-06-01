@@ -36,12 +36,12 @@ class Player
   
   def w00t
     @health += 15
-    "#{@name.capitalize} got w00ted!"
+    puts "#{@name.capitalize} got w00ted!"
   end
   
   def blam
     @health -= 10
-    "#{@name.capitalize} got blammed!"
+    puts "#{@name.capitalize} got blammed!"
   end
 
 #Override the <=> method (the general comparison (aka spaceship) operator) in the Player class 
@@ -65,6 +65,12 @@ class Player
   def points
     @found_treasures.values.reduce(0, :+)
   end
+
+  def self.from_csv(string)
+      name, health = string.split(',')
+      Player.new(name, Integer(health))
+  end
+
 
 
 end

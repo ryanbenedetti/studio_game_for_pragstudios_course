@@ -11,7 +11,41 @@ class Game
     @title = title
     @players = []
   end
-  
+
+#  Roll your own CSV file reading
+def load_players(from_file)
+  File.readlines(from_file).each do |line|
+    add_player(Player.from_csv(line))
+  end
+end
+
+# ... or with CSV class in Ruby core
+
+#  def load_players(from_file)
+#   CSV.foreach(from_file) do |row|
+#     player = Player.new(row[0], row[1].to_i)
+#     add_player(Player.from_csv(line))
+#   end
+# end
+
+ 
+
+
+def save_high_scores(to_file="high_scores.txt")
+File.open(to_file, "w") do |file|  
+  file.puts "#{@title} High Scores:"
+    @players.sort.each do |player|
+      file.puts high_score_entry(player)
+    end #players.each
+  end #File.open
+end #save_high_scores
+
+def high_score_entry(player)
+  formatted_name = player.name.ljust(20, '.')
+  "#{formatted_name} #{player.score}"
+end
+
+
   def add_player(a_player)
     @players << a_player
     #another way to do it @players.push(a_player)
@@ -82,12 +116,18 @@ puts "#{total_points} total points from treasures found"
 
    sorted_players = @players.sort { |a, b| b.score <=> a.score }
 
+   # puts "\n#{@title} High Scores:"
+   # @players.sort.each do |player|   
+   #    formatted_name = player.name.ljust(20, '.')
+   #    puts "#{formatted_name} #{player.score}"
+   # end
+   #Refactored below:
+
    puts "\n#{@title} High Scores:"
- 
    @players.sort.each do |player|   
-      formatted_name = player.name.ljust(20, '.')
-      puts "#{formatted_name} ............. #{player.score}"
+      puts high_score_entry(player)
    end
+   
 
    puts "\n#{@title} Total Points:"
  
