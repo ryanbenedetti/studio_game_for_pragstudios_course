@@ -1,9 +1,12 @@
 require_relative 'treasure_trove'
+require_relative 'playable'
 
 class Player
-  
+  #mixin the methods from the Playable module
+  include Playable
+
   attr_accessor :name
-  attr_reader :health
+  attr_accessor :health
   #attr_writer
 
   
@@ -17,9 +20,7 @@ class Player
     #puts self.inspect
   end
   
-  def strong?
-    @health > 100
-  end
+  
   
   def name=(new_name)
     @name = new_name.capitalize
@@ -33,16 +34,7 @@ class Player
   def to_s
     "I'm #{@name.capitalize} with health = #{@health}, points = #{points}, and score = #{score}."
   end
-  
-  def w00t
-    @health += 15
-    puts "#{@name.capitalize} got w00ted!"
-  end
-  
-  def blam
-    @health -= 10
-    puts "#{@name.capitalize} got blammed!"
-  end
+
 
 #Override the <=> method (the general comparison (aka spaceship) operator) in the Player class 
 #so that any time you call sort on an array of players it always returns them sorted by descending score. 

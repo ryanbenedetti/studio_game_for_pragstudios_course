@@ -1,13 +1,13 @@
 Knuckleheads High Scores:
-The mahars.......... 75369
-The sagoths......... 72989
-Berserker........... 69565
-The coripies........ 69367
-The ganaks.......... 68287
-The gorbuses........ 68146
-The horibs.......... 67442
-The ape men......... 66745
-The sabertooth men.. 65783
-The azarians........ 65503
-The beast-men....... 63326
-Klutz............... 36055.0
+The mahars.......... 1364
+The sagoths......... 1104
+The horibs.......... 962
+Berserker........... 795
+The azarians........ 778
+Klutz............... 610.0
+The beast-men....... 601
+The coripies........ 587
+The ape men......... 460
+The gorbuses........ 416
+The ganaks.......... 402
+The sabertooth men.. 348
